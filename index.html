@@ -1,0 +1,1073 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小莫 · 22岁闪光生命线</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fbf9f5;
+  color: #2c2c2c;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, .serif {
+  font-family: 'Noto Serif SC', 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
+
+/* ===== ACT 1: PRELUDE ===== */
+#act1 {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #fbf9f5 0%, #fce8d9 30%, #f7d9e0 60%, #fbf9f5 100%);
+  overflow: hidden;
+  z-index: 1;
+}
+#act1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255,36,66,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 80%, rgba(255,36,66,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+.floating-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,36,66,0.2);
+  animation: floatUp linear infinite;
+}
+.particle:nth-child(1) { left:10%; animation-duration:18s; animation-delay:0s; width:4px; height:4px; }
+.particle:nth-child(2) { left:25%; animation-duration:22s; animation-delay:-3s; width:7px; height:7px; background:rgba(255,36,66,0.15); }
+.particle:nth-child(3) { left:45%; animation-duration:16s; animation-delay:-6s; width:5px; height:5px; }
+.particle:nth-child(4) { left:60%; animation-duration:20s; animation-delay:-9s; width:8px; height:8px; background:rgba(255,36,66,0.1); }
+.particle:nth-child(5) { left:75%; animation-duration:24s; animation-delay:-4s; width:4px; height:4px; }
+.particle:nth-child(6) { left:90%; animation-duration:19s; animation-delay:-7s; width:6px; height:6px; background:rgba(255,36,66,0.18); }
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity:0; }
+  10% { opacity:1; }
+  90% { opacity:1; }
+  100% { transform: translateY(-10vh) scale(1); opacity:0; }
+}
+
+.prelude-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 640px;
+}
+
+/* ===== GIFT BOX SVG ===== */
+.gift-box {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 2.5rem;
+  cursor: pointer;
+  position: relative;
+  animation: gentleSway 3s ease-in-out infinite;
+}
+@keyframes gentleSway {
+  0%,100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+.gift-box svg { width:100%; height:100%; display:block; }
+.gift-box .box-body { fill: #ff2442; transition: fill 0.4s; }
+.gift-box:hover .box-body { fill: #e61e3a; }
+.gift-box .box-lid { fill: #ff4757; transform-origin: 50% 35%; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.gift-box.opened .box-lid { transform: rotateX(-110deg) translateY(-30px); }
+.gift-box.opened { animation: none; }
+.gift-box.opened .box-body { fill: #fbf9f5; }
+.gift-ribbon { fill: #ffd700; }
+.glow-ring {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,36,66,0.15);
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%,100% { transform: scale(1); opacity:0.5; }
+  50% { transform: scale(1.08); opacity:1; }
+}
+
+.prelude-text {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #5a4a4a;
+  line-height: 2;
+  margin-top: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+.prelude-text strong {
+  color: #ff2442;
+  font-weight: 500;
+}
+.prelude-hint {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: #b8a0a0;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:0.4; }
+  50% { opacity:1; }
+}
+
+.prelude-exit {
+  opacity: 0 !important;
+  transform: translateY(-60px) scale(0.95) !important;
+  transition: all 1s cubic-bezier(0.5, 0, 0.2, 1) !important;
+  pointer-events: none !important;
+}
+
+/* ===== SCROLL INDICATOR ===== */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #b8a0a0;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  animation: fadeInUp 1.5s ease 1s both;
+}
+.scroll-arrow {
+  width: 24px;
+  height: 36px;
+  border: 2px solid #d4c5c5;
+  border-radius: 12px;
+  position: relative;
+}
+.scroll-arrow::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 8px;
+  background: #ff2442;
+  border-radius: 2px;
+  animation: scrollDot 2s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0% { transform: translateX(-50%) translateY(0); opacity:1; }
+  100% { transform: translateX(-50%) translateY(16px); opacity:0; }
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform: translateX(-50%) translateY(20px); }
+  to { opacity:1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== SECTION COMMON ===== */
+.section {
+  padding: 6rem 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  color: #2c2c2c;
+  letter-spacing: 0.04em;
+}
+.section-subtitle {
+  text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #8a7a7a;
+  font-weight: 300;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== TIMELINE ===== */
+.timeline-container {
+  position: relative;
+  padding: 0;
+}
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #ff2442, #ff2442, transparent);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 5rem;
+  padding: 0 2rem;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 0.5rem;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ff2442;
+  border: 3px solid #fbf9f5;
+  box-shadow: 0 0 0 2px #ff2442;
+  z-index: 2;
+}
+.timeline-dot::after {
+  content: attr(data-year);
+  position: absolute;
+  top: -1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.7rem;
+  color: #ff2442;
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.timeline-content {
+  width: calc(50% - 40px);
+  padding: 1.8rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.04);
+  position: relative;
+}
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: auto;
+}
+.timeline-item:nth-child(even) .timeline-content {
+  margin-right: auto;
+}
+
+.tl-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ff2442;
+  background: rgba(255,36,66,0.08);
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+.tl-title {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #2c2c2c;
+  font-family: 'Noto Serif SC', serif;
+}
+.tl-text {
+  font-size: 0.95rem;
+  color: #5a4a4a;
+  line-height: 1.9;
+  font-weight: 300;
+}
+.tl-text strong { color: #ff2442; font-weight: 500; }
+
+.tl-img {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 0.8rem;
+  background: #f0ece6;
+}
+
+/* ===== BLOCKQUOTE ===== */
+.blockquote {
+  margin: 1.2rem 0;
+  padding: 1.2rem 1.5rem;
+  border-left: 3px solid #ff2442;
+  background: rgba(255,36,66,0.03);
+  border-radius: 0 8px 8px 0;
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 600;
+  color: #3a2a2a;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+}
+.blockquote::before {
+  content: '\201C';
+  font-size: 2.5rem;
+  color: #ff2442;
+  line-height: 0;
+  vertical-align: -0.4em;
+  margin-right: 0.2rem;
+}
+
+/* ===== SVG ILLUSTRATIONS ===== */
+.tl-illustration {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.tl-illustration svg {
+  width: 80px;
+  height: 80px;
+}
+
+/* ===== CHAPTER DIVIDER ===== */
+.chapter-divider {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  position: relative;
+}
+.chapter-divider::before, .chapter-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #dcc, transparent);
+}
+.chapter-divider::before { left: 0; }
+.chapter-divider::after { right: 0; }
+.chapter-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  color: #ff2442;
+  letter-spacing: 0.3em;
+}
+.chapter-icon {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+/* ===== ACT 2 INTRO ===== */
+#act2-intro {
+  padding: 8rem 1.5rem 4rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #fbf9f5, #fff);
+}
+#act2-intro .section-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+/* ===== ACT 3: FINALE ===== */
+#act3 {
+  padding: 6rem 1.5rem;
+  text-align: center;
+  background: linear-gradient(145deg, #fbf9f5 0%, #fce8d9 30%, #f7d9e0 60%, #fbf9f5 100%);
+}
+.finale-btn {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  color: #fff;
+  background: #ff2442;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(255,36,66,0.3);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+}
+.finale-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.finale-btn:hover::before { opacity: 1; }
+.finale-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(255,36,66,0.4);
+}
+.finale-btn:active { transform: scale(0.97); }
+.finale-btn .sparkle {
+  display: inline-block;
+  animation: sparkleRotate 1.5s ease-in-out infinite;
+}
+@keyframes sparkleRotate {
+  0%,100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(15deg) scale(1.2); }
+}
+
+/* ===== BIRTHDAY LETTER ===== */
+.letter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  padding: 1.5rem;
+}
+.letter-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.letter {
+  max-width: 620px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #fdf8ed, #fef7e6);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 16px;
+  padding: 2.5rem 2.8rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  position: relative;
+  transform: translateY(40px) scale(0.95);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.letter-overlay.active .letter {
+  transform: translateY(0) scale(1);
+}
+.letter::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255,215,0,0.15);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.letter-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #b8a0a0;
+  transition: color 0.3s;
+  z-index: 2;
+}
+.letter-close:hover { color: #ff2442; }
+.letter-heading {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.6rem;
+  color: #2c2c2c;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.letter-heading span { color: #ff2442; }
+.letter-body {
+  font-size: 0.95rem;
+  line-height: 2.1;
+  color: #3a2a2a;
+  font-weight: 300;
+  white-space: pre-line;
+}
+.letter-body p { margin-bottom: 1rem; }
+.letter-signature {
+  text-align: right;
+  margin-top: 1.5rem;
+  font-family: 'Noto Serif SC', serif;
+  color: #8a7a7a;
+  font-size: 0.9rem;
+}
+.letter-gift-hint {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed rgba(255,215,0,0.4);
+  font-size: 0.85rem;
+  color: #b8960a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .timeline-container::before { left: 20px; }
+  .timeline-item { padding: 0 0 0 3rem; }
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .timeline-dot { left: 20px; }
+  .timeline-dot::after {
+    left: 28px;
+    top: 0;
+    transform: none;
+  }
+  .section { padding: 4rem 1.2rem; }
+  .letter { padding: 1.8rem 1.5rem; }
+  .prelude-text { font-size: 0.95rem; }
+  .gift-box { width: 100px; height: 100px; }
+}
+
+/* ===== MISC ===== */
+.accent { color: #ff2442; }
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.emoji-big { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+/* stat badges */
+.stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: #8a7a7a;
+  background: rgba(0,0,0,0.03);
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+  margin-top: 0.6rem;
+}
+.stat-badge::before { content: '❤'; color: #ff2442; }
+.stat-badge.comment::before { content: '💬'; }
+
+/* timeline image placeholder */
+.tl-img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 0.8rem;
+  background: #f0ece6;
+  display: block;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ==================== ACT 1: PRELUDE ==================== -->
+<div id="act1">
+  <div class="floating-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+  <div class="prelude-content" id="preludeContent">
+    <!-- Gift Box SVG -->
+    <div class="gift-box" id="giftBox" onclick="openGift()">
+      <div class="glow-ring"></div>
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <path class="box-lid" d="M15,35 L105,35 L100,20 L20,20 Z"/>
+        <path class="gift-ribbon" d="M55,10 Q60,0 65,10 Q60,20 55,10 Z"/>
+        <path class="gift-ribbon" d="M65,10 Q60,0 55,10 Q60,20 65,10 Z" transform="translate(5,0)"/>
+        <circle class="gift-ribbon" cx="60" cy="27" r="4"/>
+        <rect class="box-body" x="15" y="35" width="90" height="70" rx="3"/>
+        <rect class="gift-ribbon" x="55" y="35" width="10" height="70" rx="2"/>
+        <rect class="gift-ribbon" x="15" y="65" width="90" height="10" rx="2"/>
+      </svg>
+    </div>
+    <p class="prelude-text reveal visible">
+      Hi <strong>小莫</strong>，你用小红书记录了世界 365 天。
+      <br>但你不知道的是，在这个宇宙的某个角落，
+      <br>有一个空间一直在默默记录着<strong>你</strong>。
+    </p>
+    <p class="prelude-hint reveal visible" id="preludeHint">点击礼盒，开启属于你的 22 岁闪光生命线</p>
+  </div>
+  <div class="scroll-indicator" id="scrollIndicator">
+    <div class="scroll-arrow"></div>
+    <span>SCROLL</span>
+  </div>
+</div>
+
+<!-- ==================== ACT 2: MEMORY LANE ==================== -->
+<div id="act2-intro">
+  <div class="reveal">
+    <span class="emoji-big">✨</span>
+    <h2 class="section-title">你的闪光生命线</h2>
+    <p class="section-subtitle">38 篇日记 · 135 条评论 · 365 个日夜<br>从大三的教室到威海的日落，每一步都算数</p>
+  </div>
+</div>
+
+<div class="section timeline-container">
+
+  <!-- ITEM 0: 开篇 -->
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="2025"></div>
+    <div class="timeline-content">
+      <span class="tl-label">起点</span>
+      <div class="tl-title">"请向未来的你，多多分享现在的你"</div>
+      <div class="tl-text">
+        2025年春天，你写下了这句话。从那天起，你就成为了一名忠实的记录者——镜头、文字、备忘录里的碎碎念，都是你留给未来的时光胶囊。
+      </div>
+      <div class="blockquote">请向未来的你，多多分享现在的你。</div>
+      <div class="stat-badge">38 篇笔记</div>
+      <div class="stat-badge comment">135 条互动</div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 1: 与世界交手的白天 -->
+  <div class="chapter-divider reveal">
+    <div class="chapter-number">CHAPTER 01</div>
+    <div class="chapter-icon">☀️</div>
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:clamp(1.2rem,3vw,1.8rem);">那些与世界交手的白天</h3>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="03月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">大三 · 平衡与自律</span>
+      <div class="tl-title">梦想中的幸福生活</div>
+      <div class="tl-text">
+        大三下学期，你过上了曾经向往的生活：<strong>一周四休，有目标地努力</strong>。每天起床想着今天学什么、练什么，累了就留半天给自己休息。健身、摄影、钢琴——你在慢慢挖掘自己的兴趣爱好，实现了"健身自由"。你说：<strong>"最好的朋友是我自己"</strong>。
+      </div>
+      <img class="tl-img" src="images/college-life.jpg" alt="大三幸福生活照片" loading="lazy">
+      <div class="stat-badge">2025.04.22</div>
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="04月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">春招 · Day2 → Day9</span>
+      <div class="tl-title">跑过的面试，都算数</div>
+      <div class="tl-text">
+        从春招 Day2 的忐忑——被企业"遛"了一场又一场，到 Day9 工行无领导辩论面对一众硕士面霸——你插上了三句话，心满意足。<strong>"你真的特别棒小莫！！！跑了这么多场笔试面试真的很厉害啦。"</strong> 你给同组面试的每个人都发了加油，在洗手间还加到了好朋友。那个在春招日记里自我打气的女孩，正在一点一点地发光。
+      </div>
+      <img class="tl-img" src="images/walk.jpg" alt="春招面试记录意象图" loading="lazy">
+      <div class="stat-badge">2026.04—05</div>
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="03月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">失败 · 重构</span>
+      <div class="tl-title">我的世界不会一直下雨</div>
+      <div class="tl-text">
+        国考、省考、选调、事业编全部下岸，国奖优毕全部落选，爱情也差点意思。但你写下：<strong>"失败没有摧毁我的自信，相反它给予了我对于失败以外更多的感悟。"</strong> 毛选里的话被你借来——斗争，失败，再斗争，直至胜利。
+      </div>
+      <div class="blockquote">我的世界不会一直失败，也不会一直下雨。</div>
+      <div class="stat-badge comment">2026.03.31</div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 2: 深夜自愈 -->
+  <div class="chapter-divider reveal">
+    <div class="chapter-number">CHAPTER 02</div>
+    <div class="chapter-icon">🌙</div>
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:clamp(1.2rem,3vw,1.8rem);">深夜的自愈空间</h3>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="04.11"></div>
+    <div class="timeline-content">
+      <span class="tl-label">2025.04.11 23:54</span>
+      <div class="tl-title">顶级中路 · 峡谷高光</div>
+      <div class="tl-text">
+        <strong>"其实我一直觉得顶级中路是一件很普通的事情"</strong>——你掏出小乔，靠着惊天地泣鬼神的操作拿下比赛。表面满不在乎，但谁都知道那个深夜在峡谷里大杀四方的你，用一场游戏就消化了一整天的疲惫。第二天醒来，又是一个能量满满的女孩。
+      </div>
+      <img class="tl-img" src="images/game.jpg" alt="王者荣耀游戏截图" loading="lazy">
+      <div class="stat-badge">⭐ 小乔无双</div>
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="04月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">毕业 · 告别乌托邦</span>
+      <div class="tl-title">原来真的要毕业了</div>
+      <div class="tl-text">
+        大学是你最幸福的乌托邦。图书馆、教学楼二楼、操场——每一个角落都藏着回忆。你说：<strong>"接受缘分的流动，让缘分停留在此时此刻吧。或许接受变化，是人生必须要去学会的事情。"</strong> 不想毕业的不只是你，还有所有被你的温暖照耀过的人。
+      </div>
+      <div class="stat-badge comment">2026.04</div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 3: 多巴胺微光 -->
+  <div class="chapter-divider reveal">
+    <div class="chapter-number">CHAPTER 03</div>
+    <div class="chapter-icon">💖</div>
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:clamp(1.2rem,3vw,1.8rem);">生活中的"多巴胺"微光</h3>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="05月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">第一只 Jellycat</span>
+      <div class="tl-title">爱不是等待别人给予的</div>
+      <div class="tl-text">
+        2025年5月，你送出了第一只Jellycat——送给最重要的自己。"都说第一只Jellycat要送给最重要的人，我想自己就是自己最重要的人。" 甜美小兔从此多了个温暖的妈妈。
+      </div>
+      <div class="blockquote">爱不是等待别人给予的，爱是自己创造的。</div>
+      <div class="stat-badge">2025.05.20</div>
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="2026"></div>
+    <div class="timeline-content">
+      <span class="tl-label">健身 · 阅读</span>
+      <div class="tl-title">当运动成为习惯</div>
+      <div class="tl-text">
+        从健身房小白到<strong>推肩7.5kg做组</strong>，你穿牛仔裤配运动内衣在镜前拍下了自己悄悄变化的肌肉线条。"认真坚持运动的你已经很厉害啦，不要给自己制造这么多压力。" 攀岩初体验、瑜伽课——你在运动中获得了内心的平静。你说：<strong>"运动的目的，是保持健康的身体和增加自己的力量。"</strong>
+      </div>
+      <img class="tl-img" src="images/fitness.jpg" alt="健身镜前记录照片" loading="lazy">
+      <div class="stat-badge">7.5kg 💪</div>
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="03月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">东莞 · 小兔 · Citywalk</span>
+      <div class="tl-title">那些让人心头一软的瞬间</div>
+      <div class="tl-text">
+        在东莞X11买到了缺货的米色甜美小兔，"没有丝毫犹豫买了！！！" 在莞城万寿路citywalk，涂鸦墙、老城区、放学觅食的莞中学生——你穿着好看的穿搭，拍下了22岁前最好的自己。那些你爱自己的证据，都藏在每一张照片的笑眼里。
+      </div>
+      <div class="stat-badge">🐰 米色甜美小兔</div>
+      <div class="stat-badge comment">莞城万寿路</div>
+      <img class="tl-img" src="images/jellycat.jpg" alt="米色甜美小兔照片" loading="lazy">
+    </div>
+  </div>
+
+  <!-- CHAPTER 4: 步履不停 -->
+  <div class="chapter-divider reveal">
+    <div class="chapter-number">CHAPTER 04</div>
+    <div class="chapter-icon">🌊</div>
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:clamp(1.2rem,3vw,1.8rem);">步履不停的远方</h3>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="05月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">Solo Trip 第一站</span>
+      <div class="tl-title">柳州 · 螺蛳粉与木薯羹</div>
+      <div class="tl-text">
+        五一和亲戚去了柳州，两天两夜纯吃版。鸭脚煲、炒螺蛳粉、张飞木薯羹、茶麸洗头——你吃遍青云市集，被电动车大军震撼，带着上火的喉咙和满满的幸福感回了家。你推荐给所有问柳州攻略的人："去！人少的柳州特别好玩。"
+      </div>
+      <div class="stat-badge">🍜 2026.05</div>
+      <img class="tl-img" src="images/wechat-moments.jpg" alt="美食记录照片" loading="lazy">
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="05月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">家庭旅行</span>
+      <div class="tl-title">南澳岛 · 大海的所有幻想</div>
+      <div class="tl-text">
+        和爸爸妈妈在南澳岛住了三天。彩虹码头的日落、青澳湾的日出、蓝调的海滩——"我爸开了两天车，我妈一直给我拍照"——你说南澳岛满足了你对大海的所有幻想。爸爸开车，妈妈拍照，你负责幸福。
+      </div>
+      <img class="tl-img" src="images/nanao-6.jpg" alt="南澳岛海边日落风景照片" loading="lazy">
+      <div class="stat-badge comment">🌅 2026.05</div>
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="06月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">北上 · 青岛</span>
+      <div class="tl-title">崂山 · 红瓦 · 大雾也美</div>
+      <div class="tl-text">
+        毕业旅行来到青岛。栈桥、德国总督府、海军博物馆、崂山仰口——即使大雾遮住了海，你依然在太清宫被肥猫治愈，在老子神像前看到辽阔大海。"一边吃饭一边吹风看海景真的超级幸福。" 在仰口沙滩和妈妈打电话，看到星星和烟花，你觉得一切都圆满了。
+      </div>
+      <div class="stat-badge">⛰️ 2026.06</div>
+      <img class="tl-img" src="images/qingdao.jpg" alt="青岛崂山游记照片" loading="lazy">
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="06月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">威海 · Solo Trip</span>
+      <div class="tl-title">一场不期而遇的浪漫邂逅</div>
+      <div class="tl-text">
+        从青岛告别好友，独自前往威海。布鲁斯号搁浅的船被海鸥包围，你在猫头山眼镜掉进护栏外一个人爬出去捡、独自去急诊——"感觉自己处理得挺好的，以前肯定很慌张。" 而最动人的，是你在火炬八街和一位独游姐姐的偶遇：互拍、约看日落、在海边散步听交响乐。<strong>"谁也不知道后面会发生什么，但我知道一定是会向上的。"</strong>
+      </div>
+      <img class="tl-img" src="images/weihai-5.jpg" alt="威海布鲁斯号搁浅船与海鸥照片" loading="lazy">
+      <div class="stat-badge comment">🚢 布鲁斯号</div>
+      <img class="tl-img" src="images/weihai-9.jpg" alt="威海火炬八街日落照片" loading="lazy">
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="06月"></div>
+    <div class="timeline-content">
+      <span class="tl-label">小麦岛 · 没有日落也美</span>
+      <div class="tl-title">随机抓个摄影师</div>
+      <div class="tl-text">
+        没有日落的小麦岛也很美。你拿着自拍杆拍了很久，最后随机抓了野生摄影师——十块一张、五分钟二十多张。"下次看到好看的景就不浪费时间拍照了，花点钱拍吧，真的特别值。" 那片油画般的小黄花，和你一样灿烂。
+      </div>
+      <div class="stat-badge">🌼 2026.06</div>
+      <img class="tl-img" src="images/xiaomai-3.jpg" alt="小麦岛小黄花照片" loading="lazy">
+    </div>
+  </div>
+
+  <!-- CHAPTER 5: 真实而立体的侧面 -->
+  <div class="chapter-divider reveal">
+    <div class="chapter-number">CHAPTER 05</div>
+    <div class="chapter-icon">💫</div>
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:clamp(1.2rem,3vw,1.8rem);">真实而立体的侧面</h3>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="ISFJ"></div>
+    <div class="timeline-content">
+      <span class="tl-label">MBTI · 反差</span>
+      <div class="tl-title">慢热 ISFJ 的内心宇宙</div>
+      <div class="tl-text">
+        ISFJ、独处的王、等热情小狗主动——你自嘲"isfj到底怎么样才能谈上恋爱"。可你也是那个在健身房默默坚持一年、在春招群给每个人打气、在威海主动和独游姐姐约日落的勇敢女孩。别人看到的是慢热，我们看到的是你选择了<strong>做自己最好的朋友</strong>。就像你21岁生日写给自己的话："不管怎么样，我会无条件的支持和肯定你。"
+      </div>
+      <div class="blockquote">最好的朋友是我自己。</div>
+      <div class="stat-badge">2025.06 → 2026.06</div>
+    </div>
+  </div>
+
+  <div class="timeline-item reveal">
+    <div class="timeline-dot" data-year="22岁"></div>
+    <div class="timeline-content">
+      <span class="tl-label">向内求</span>
+      <div class="tl-title">从向外求到向内求</div>
+      <div class="tl-text">
+        22岁生日那天，你写下："逐渐从向外求变成向内求了，不太在意外界的看法，变成追求内心的平静。此时此刻有家人在我身边就很幸福。" 你给爸爸买了父亲节礼物，和外婆约着推她出去走走，和妈妈散步消食——<strong>幸福就是这么平淡简单。</strong>
+      </div>
+      <div class="stat-badge comment">🎂 2026.06.20</div>
+      <img class="tl-img" src="images/birthday-22.jpg" alt="22岁生日照片" loading="lazy">
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== ACT 3: FINALE ==================== -->
+<div id="act3">
+  <div class="reveal">
+    <span class="emoji-big">🎉</span>
+    <h2 class="section-title" style="margin-bottom:1.5rem;">22 岁，轻装上阵</h2>
+    <p class="section-subtitle">
+      你走过的每一步，都算数。
+      <br>点击下方按钮，开启属于你的生日庆典
+    </p>
+    <div style="margin-top:2.5rem;">
+      <button class="finale-btn" onclick="launchCelebration()">
+        <span class="sparkle">✦</span> 启动 22 岁愿望池 <span class="sparkle">✦</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LETTER OVERLAY ==================== -->
+<div class="letter-overlay" id="letterOverlay">
+  <div class="letter" id="letterContent">
+    <button class="letter-close" onclick="closeLetter()">✕</button>
+    <div class="letter-heading">给 <span>小莫</span> 的一封信</div>
+    <div class="letter-body">
+亲爱的 小莫：
+
+翻阅完你过去一年真诚记录的文字，仿佛旁观了一场精彩的成长纪录片。
+我看到那个在大三教室里制定每日目标、去健身房对着镜子看肌肉线条、在图书馆二楼读女性健康书籍的你——安静而笃定，温柔又有力量。
+
+我看到你在深夜23:54掏出小乔打出高光操作，第二天又西装革履地出现在无领导小组面试现场，面对一群硕士面霸也能淡定地插上三句话。"你真的特别棒"——这是你写给自己的一句话，我想把这句话原封不动地还给你。
+
+我看到你独自拎着行李走过柳州、南澳、青岛、威海。在猫头山眼镜掉进护栏外，你一个人爬出去捡、独自去急诊，你说"感觉自己处理得挺好的"——是的，你比自己想象中更勇敢。你在火炬八街和陌生姐姐看的那场日落，是独行路上最美的礼物。
+
+我看到你把第一只Jellycat送给了自己，说"爱不是等待别人给予的"；看到你反思失败又重整旗鼓，写下"我的世界不会一直下雨"；看到你慢慢学会与身体和解、与焦虑共存，把"身体健康"放在人生首位。
+
+你不是在等待被谁照亮。你本身就是光源。
+
+22岁，是一个可以轻装上阵的年纪。你拥有把自己的生活经营得丰盈的能力，也拥有在风暴中抱住自己的底气。未来还会有很多未知的风景和挑战，但我知道——你一定会走得稳稳的，像你独自走过的那些路一样漂亮。
+
+生日快乐，小莫。
+愿你永远保持记录的热情、拥抱未知的勇气，和那份把平淡日子过出光泽的魔法。
+前路开阔，你值得一切美好的事物。
+
+—— 一位默默读过你所有文字的朋友
+    </div>
+    <div class="letter-signature">2026 年夏</div>
+    <div class="letter-gift-hint">🎁 现实礼物接收线索：请在微信/现实中查收属于你的生日惊喜。</div>
+  </div>
+</div>
+
+<script>
+// ===== ACT 1: Gift Box Interaction =====
+function openGift() {
+  const box = document.getElementById('giftBox');
+  const content = document.getElementById('preludeContent');
+  const hint = document.getElementById('preludeHint');
+  const indicator = document.getElementById('scrollIndicator');
+
+  if (box.classList.contains('opened')) return;
+  box.classList.add('opened');
+
+  // launch a small confetti burst
+  confetti({
+    particleCount: 80,
+    spread: 70,
+    origin: { y: 0.6 },
+    colors: ['#ff2442', '#ffd700', '#fbf9f5', '#ff6b81']
+  });
+
+  // fade out prelude content
+  setTimeout(() => {
+    content.classList.add('prelude-exit');
+    hint.style.display = 'none';
+  }, 600);
+
+  // auto scroll to act 2 after opening
+  setTimeout(() => {
+    const act2 = document.getElementById('act2-intro');
+    act2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 1200);
+}
+
+// ===== INTERSECTION OBSERVER: Scroll Reveal =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.getElementById('giftBox').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGift(); }
+  });
+  document.getElementById('giftBox').setAttribute('tabindex', '0');
+  document.getElementById('giftBox').setAttribute('role', 'button');
+  document.getElementById('giftBox').setAttribute('aria-label', '点击开启');
+});
+
+// ===== ACT 3: Confetti + Letter =====
+function launchCelebration() {
+  const duration = 3000;
+  const end = Date.now() + duration;
+  const colors = ['#ff2442', '#ffd700', '#ff6b81', '#ff9f43', '#fbf9f5', '#7bed9f'];
+
+  (function frame() {
+    confetti({
+      particleCount: 4,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: colors
+    });
+    confetti({
+      particleCount: 4,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: colors
+    });
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+
+  confetti({
+    particleCount: 150,
+    spread: 100,
+    origin: { y: 0.6 },
+    colors: colors
+  });
+
+  setTimeout(() => {
+    confetti({
+      particleCount: 100,
+      spread: 120,
+      origin: { y: 0.4 },
+      colors: ['#ffd700', '#ff2442']
+    });
+  }, 500);
+
+  setTimeout(() => {
+    document.getElementById('letterOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }, 800);
+}
+
+function closeLetter() {
+  document.getElementById('letterOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('letterOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeLetter();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLetter();
+});
+
+// ===== PARALLAX FADE FOR ACT 1 =====
+window.addEventListener('scroll', function() {
+  const act1 = document.getElementById('act1');
+  const rect = act1.getBoundingClientRect();
+  const progress = 1 - (rect.bottom / window.innerHeight);
+  if (progress > 0 && progress < 1) {
+    act1.style.opacity = 1 - progress * 1.2;
+  }
+});
+</script>
+
+</body>
+</html>
+*** End of File
